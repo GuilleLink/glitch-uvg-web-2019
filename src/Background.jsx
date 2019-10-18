@@ -1,11 +1,9 @@
 import React from 'react';
 import './App.css';
 
-const Background = () => (
+const Background = ({ children }) => (
   <div className="background">
-    {' '}
-    {this.props.children}
-    {' '}
+    {children}
   </div>
 );
 

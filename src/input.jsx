@@ -29,7 +29,8 @@ export default class Input extends Component {
 
   search(event) {
     event.preventDefault();
-    window.open(`https://duckduckgo.com/?q=${this.state.input}&t=h_&ia=web`);
+    const { input } = this.state;
+    window.open(`https://duckduckgo.com/?q=${input}&t=h_&ia=web`);
   }
 
   render() {
@@ -107,53 +108,25 @@ export default class Input extends Component {
       backgroundRepeat: 'no-repeat',
     };
 
-    const clearStyle = {
-      display: 'none',
-      marginRight: '3.2em',
-      padding: '0.5em',
-      lineHeight: '1',
-      minWidth: '21px',
-      color: '#aaa',
-      visibility: 'hidden',
-      opacity: '0',
-      boxSizing: 'content-box',
-      speak: 'none',
-      fontSyle: 'normal',
-      fontWeight: 'normal !important',
-      fontVariant: 'normal',
-      textTransform: 'none',
-      textDecoration: 'none !important',
-      width: '1em',
-      cursor: 'pointer',
-      background: 'transparent',
-      textAlign: 'center',
-      border: 'none',
-      height: '2.45em',
-      position: 'absolute',
-      top: '0',
-      bottom: '0',
-      right: '2px',
-      left: 'auto',
-      margin: 'auto',
-      zIndex: '2',
-      outline: 'none',
-    };
-
     const divS = {
       display: 'flex',
       flexDirection: 'row',
     };
 
+    const { input } = this.state;
+
     return (
       <div style={divStyle}>
         <form style={formStyle}>
-          <input onChange={this.setText} name="search" style={inputStyle} type="text" autoComplete="off" tabIndex="1" autoCapitalize="off" autoCorrect="off" />
-          {this.state.input !== '' ? (
+          <input onChange={this.setText} name="search" style={inputStyle} type="text" autoComplete="off" tabIndex="-1" autoCapitalize="off" autoCorrect="off" />
+          {input !== '' ? (
             <div style={divS}>
-              <button value="X" className="fa fa-times" style={input2Style} onClick={this.clearText} tabIndex="3" />
-              <button className="fa fa-search" style={inputSearch} onClick={this.search} tabIndex="2" />
+              { /* eslint-disable-next-line */}
+              <button type="button" value="X" className="fa fa-times" style={input2Style} onClick={this.clearText} tabIndex="-1" />
+              { /* eslint-disable-next-line */}
+              <button type="button" className="fa fa-search" style={inputSearch} onClick={this.search} tabIndex="-1" />
             </div>
-          ) : <button className="fa fa-search hover" tabIndex="2" /> }
+          ) : <button type="button" label="search" className="fa fa-search hover" tabIndex="-1" /> }
         </form>
       </div>
     );
